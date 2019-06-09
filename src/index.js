@@ -1,20 +1,26 @@
-import React, { Fragment } from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import SeasonDisplay from "./SeasonDisplay";
 
-const App = () => {
-  window.navigator.geolocation.getCurrentPosition(
-    position => console.log(position),
-    err => console.log(err)
-  );
-  return (
-    <Fragment>
-      <h1>Test</h1>
-      <SeasonDisplay />
-    </Fragment>
-  );
-};
+class App extends Component {
+  state = {
+    latitude: ""
+  };
 
-export default App;
+  componentDidMount() {
+    window.navigator.geolocation.getCurrentPosition(
+      position => this.setState({ latitude: position.coords.latitude }),
+      err => console.log(err)
+    );
+  }
+  render() {
+    return (
+      <div className="ui container">
+        <h1>Latitude:{this.state.latitude}</h1>
+        <SeasonDisplay />
+      </div>
+    );
+  }
+}
 
 ReactDOM.render(<App />, document.querySelector("#root"));

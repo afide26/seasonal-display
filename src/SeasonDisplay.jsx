@@ -1,9 +1,11 @@
 import React from "react";
 
-const SeasonDisplay = () => {
+const SeasonDisplay = ({ lat }) => {
+  const style = { background: "orangered" };
   return (
-    <div>
+    <div style={lat <= 0 ? style : null}>
       <h2>Season Display Component</h2>
+      <p>Your location:{lat}</p>
     </div>
   );
 };

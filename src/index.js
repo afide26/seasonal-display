@@ -32,7 +32,7 @@ class App extends Component {
 
     if (!errorMessage && latitude) {
       return (
-        <div className="ui container">
+        <div>
           <SeasonDisplay lat={latitude} />
         </div>
       );

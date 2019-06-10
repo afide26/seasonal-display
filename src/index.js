@@ -9,20 +9,8 @@ class App extends Component {
     errorMessage: ""
   };
 
-  componentDidMount() {
-    console.log("Component Did Mount");
-    window.navigator.geolocation.getCurrentPosition(
-      position => this.setState({ latitude: position.coords.latitude }),
-      err => this.setState({ errorMessage: err.message })
-    );
-  }
-
-  componentDidUpdate() {
-    console.log("My component re-rendered");
-  }
-  render() {
+  renderContent() {
     const { errorMessage, latitude } = this.state;
-    console.log("Render");
     if (errorMessage && !latitude) {
       return (
         <div className="ui container">
@@ -40,6 +28,22 @@ class App extends Component {
     }
 
     return <Spinner message="Please accept location request" />;
+  }
+
+  componentDidMount() {
+    console.log("Component Did Mount");
+    window.navigator.geolocation.getCurrentPosition(
+      position => this.setState({ latitude: position.coords.latitude }),
+      err => this.setState({ errorMessage: err.message })
+    );
+  }
+
+  componentDidUpdate() {
+    console.log("My component re-rendered");
+  }
+  render() {
+    console.log("Render");
+    return <div>{this.renderContent()}</div>;
   }
 }
 

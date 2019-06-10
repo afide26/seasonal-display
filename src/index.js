@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import SeasonDisplay from "./SeasonDisplay";
+import SeasonDisplay from "./components/SeasonalDisplay";
+import Spinner from "./components/Spinner";
 
 class App extends Component {
   state = {
@@ -38,11 +39,7 @@ class App extends Component {
       );
     }
 
-    return (
-      <div>
-        <h2>Loading....</h2>
-      </div>
-    );
+    return <Spinner />;
   }
 }
 
